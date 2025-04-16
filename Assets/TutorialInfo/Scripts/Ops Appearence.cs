@@ -24,6 +24,7 @@ public class OpsApparition : MonoBehaviour
         spawnPosition.y = transform.position.y; // Lock Y to player's Y
         
         GameObject ops = Instantiate(opsPrefab, spawnPosition, Quaternion.identity);
+        ops.transform.LookAt(transform);
         Rigidbody rb = ops.GetComponent<Rigidbody>();
         
         if (rb != null)
