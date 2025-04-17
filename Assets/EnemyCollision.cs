@@ -1,31 +1,19 @@
-// attacher ce script au prefab ennemi.
-// vérifie si l'ennemi est touché par une banane ou par le joueur.
+// EnemyCollision.cs
+// À attacher sur le prefab Ennemi (Singe).
+// Ne gère plus la collision joueur, seulement les projectiles.
 using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
-    // la méthode est appelée lors d'une collision physique (vérifier que le composant n'a pas le "Is Trigger" de coché)
+    // Collision physique (Is Trigger décoché).
     private void OnCollisionEnter(Collision collision)
     {
-        //  si ennemi est touché par une banane
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            // détruis la banane
-            Destroy(collision.gameObject);
-            // détruis le singe
-            Destroy(gameObject);
-            Debug.Log("destruction d'objet");
-        }
-        // si l'ennemi entre en collision avec le joueur
-        else if (collision.gameObject.CompareTag("Player"))
-        {
-            // prends le script de gestion de la vie du joueur attaché au joueur
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(1);
-            }
-            Destroy(gameObject);
+            Destroy(collision.gameObject);    // détruit la banane
+            Destroy(gameObject);              // détruit le singe
+            GameScore.Instance.AddScore();    // incrémente le score
+            Debug.Log("Banana hit enemy → score +1");
         }
     }
 }

@@ -1,67 +1,69 @@
+// Score.cs
+// À attacher sur un GameObject vide (par ex. "GameController").
+// Gère le score et l'affichage des cœurs.
 using UnityEngine;
 using TMPro;
 
-public class GameScore : MonoBehaviour {
+public class GameScore : MonoBehaviour
+{
+    // Singleton pour y accéder depuis n'importe où
+    public static GameScore Instance { get; private set; }
 
-    public TextMeshProUGUI text;
-    public GameObject heart1;
-    public GameObject heart2;
-    public GameObject heart3;
-    
-    public GameObject deathPanel;
+    [Header("UI")]
+    public TextMeshProUGUI text;     // Affichage du score
+    public GameObject heart1;        // 1er cœur (UI Image)
+    public GameObject heart2;        // 2e cœur
+    public GameObject heart3;        // 3e cœur
 
-    public int score = 0;
-    
-    public void Start() 
+    [HideInInspector]
+    public int score = 0;            // Valeur du score
+
+    private void Awake()
     {
-        deathPanel.SetActive(false);
+        // Mise en place du singleton
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(gameObject);
     }
 
-    public void Update()
+    private void Start()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase ==
-            TouchPhase.Began)
-            
-        {
-            RemoveHeart();
-            SetScore();
-        }
-    }
-    
-
-    //take the score from RaiseScore() and set it as a String value.  Then use that string to replace the current score on the text feild inside a canvas
-    void SetScore()
-    {
-        score += 1;
-        string scoreText = "Score : " + score.ToString();
-        // Debug successfully updates the score on the Console.
-        Debug.Log(scoreText);
-        //NullReferenceException: Object reference not set to an instance of an object Solution
-        text.text = scoreText;
+        // Initialiser l'affichage au démarrage
+        UpdateScoreText();
     }
 
-    void RemoveHeart()
+    /// <summary>
+    /// Appeler quand une banane touche un singe
+    /// </summary>
+    public void AddScore()
     {
-        // Animate the heart to be removed
+        score++;
+        UpdateScoreText();
+    }
+
+    /// <summary>
+    /// Affiche la nouvelle valeur du score
+    /// </summary>
+    private void UpdateScoreText()
+    {
+        text.text = "Score : " + score;
+        Debug.Log("Score : " + score);
+    }
+
+    /// <summary>
+    /// Appeler quand un singe touche le joueur
+    /// </summary>
+    public void LoseLife()
+    {
         if (heart1.activeSelf)
-        {
             heart1.SetActive(false);
-        }
         else if (heart2.activeSelf)
-        {
             heart2.SetActive(false);
-        }
         else if (heart3.activeSelf)
-        {
             heart3.SetActive(false);
-            GameOver();
 
-        }
-    }
-    
-    void GameOver()
-    {
-        deathPanel.SetActive(true);
-        Debug.Log("Game Over");
+        Debug.Log("Life lost. Remaining hearts: " +
+                  (heart1.activeSelf ? 3 : heart2.activeSelf ? 2 : heart3.activeSelf ? 1 : 0));
     }
 }
