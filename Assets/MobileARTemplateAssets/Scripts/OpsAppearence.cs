@@ -29,7 +29,6 @@ public class OpsApparition : MonoBehaviour
         
         if (rb != null)
         {
-            //rb.linearVelocity = (transform.position - spawnPosition).normalized * opsSpeed;
             rb.linearVelocity = (transform.position - spawnPosition).normalized * opsSpeed;
         }
     }

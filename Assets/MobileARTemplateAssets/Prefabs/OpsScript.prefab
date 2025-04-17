@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9155550432624912596}
-  - component: {fileID: 4353086097619817088}
+  - component: {fileID: -8503024124904777585}
   m_Layer: 0
   m_Name: OpsScript
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4353086097619817088
+--- !u!114 &-8503024124904777585
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb001aa75c0d416087ff541b80a8a9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  opsPrefab: {fileID: 651072232914994569, guid: 997b6aeae8e1d254cb703b25334fb34d,
+  opsPrefab: {fileID: 5097215822906396159, guid: cef82370f5563ba42aa258fecc600823,
     type: 3}
   spawnInterval: 2
   spawnDistance: 10
-  opsSpeed: 2
+  opsSpeed: 1
