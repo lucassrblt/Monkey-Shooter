@@ -7,8 +7,15 @@ public class GameScore : MonoBehaviour {
     public GameObject heart1;
     public GameObject heart2;
     public GameObject heart3;
+    
+    public GameObject deathPanel;
 
     public int score = 0;
+    
+    public void Start() 
+    {
+        deathPanel.SetActive(false);
+    }
 
     public void Update()
     {
@@ -20,6 +27,7 @@ public class GameScore : MonoBehaviour {
             SetScore();
         }
     }
+    
 
     //take the score from RaiseScore() and set it as a String value.  Then use that string to replace the current score on the text feild inside a canvas
     void SetScore()
@@ -46,10 +54,14 @@ public class GameScore : MonoBehaviour {
         else if (heart3.activeSelf)
         {
             heart3.SetActive(false);
+            GameOver();
+
         }
-        else
-        {
-            Debug.Log("No hearts left to remove.");
-        }
+    }
+    
+    void GameOver()
+    {
+        deathPanel.SetActive(true);
+        Debug.Log("Game Over");
     }
 }
