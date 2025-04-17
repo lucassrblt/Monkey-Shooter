@@ -46,6 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   opsPrefab: {fileID: 5097215822906396159, guid: cef82370f5563ba42aa258fecc600823,
     type: 3}
-  spawnInterval: 2
+  spawnInterval: 7
   spawnDistance: 10
-  opsSpeed: 1
+  opsSpeed: 1.5
