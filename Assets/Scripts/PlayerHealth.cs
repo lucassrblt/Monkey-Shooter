@@ -36,21 +36,7 @@ public class PlayerHealth : MonoBehaviour
     {
         Debug.Log("Game Over !");
         isGameOver = true;
-        Time.timeScale = 0;
+        SceneManager.LoadScene("GameOverScene");
     }
-
-    // Affichage du bouton Recommencer
-    private void OnGUI()
-    {
-        if (isGameOver)
-        {
-            int w = 200, h = 50;
-            Rect rect = new Rect((Screen.width - w) / 2, (Screen.height - h) / 2, w, h);
-            if (GUI.Button(rect, "Recommencer"))
-            {
-                Time.timeScale = 1;
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-            }
-        }
-    }
+    
 }
