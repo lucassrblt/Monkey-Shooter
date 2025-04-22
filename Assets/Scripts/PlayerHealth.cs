@@ -26,7 +26,8 @@ public class PlayerHealth : MonoBehaviour
         {
             TakeDamage(1);                 // dégâts internes
             GameScore.Instance.LoseLife(); // enlève un cœur
-            Destroy(other.gameObject);     // détruit le singe
+            //Destroy(other.gameObject);     // détruit le singe
+            other.gameObject.SetActive(false); // désactive le singe
             Debug.Log("Enemy hit player → lost 1 life");
         }
     }
