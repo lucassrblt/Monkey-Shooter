@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Shooting : MonoBehaviour
@@ -66,5 +67,14 @@ public class Shooting : MonoBehaviour
         }
 
         Destroy(bananaInstance, 5f);
+    }
+
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(other.gameObject);
+        }
     }
 }
